@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fairytail.Properties
+namespace Window.Properties
 {
 
 

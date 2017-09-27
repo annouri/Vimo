@@ -1,0 +1,10 @@
+C:\Users\ZERO\source\repos\Window\Window\bin\Debug\Window.exe.config
+C:\Users\ZERO\source\repos\Window\Window\bin\Debug\Window.exe
+C:\Users\ZERO\source\repos\Window\Window\bin\Debug\Window.pdb
+C:\Users\ZERO\source\repos\Window\Window\obj\Debug\Window.csprojResolveAssemblyReference.cache
+C:\Users\ZERO\source\repos\Window\Window\obj\Debug\Window.Form1.resources
+C:\Users\ZERO\source\repos\Window\Window\obj\Debug\Window.Properties.Resources.resources
+C:\Users\ZERO\source\repos\Window\Window\obj\Debug\Window.csproj.GenerateResource.Cache
+C:\Users\ZERO\source\repos\Window\Window\obj\Debug\Window.csproj.CoreCompileInputs.cache
+C:\Users\ZERO\source\repos\Window\Window\obj\Debug\Window.exe
+C:\Users\ZERO\source\repos\Window\Window\obj\Debug\Window.pdb
