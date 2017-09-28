@@ -97,7 +97,7 @@ namespace Window
 
         private void panel1_Paint_1(object sender, PaintEventArgs e)
         {
-            //label2.Text = DateTime.Now.ToString("HH:mm");
+            
 
             var culture = CultureInfo.GetCultureInfo("cs-CZ");
             var dateTimeInfo = DateTimeFormatInfo.GetInstance(culture);
@@ -106,14 +106,15 @@ namespace Window
 
             int weekNumber = culture.Calendar.GetWeekOfYear(dateTime, dateTimeInfo.CalendarWeekRule, dateTimeInfo.FirstDayOfWeek);
             label3.Text = "" + weekNumber;
-            label4.Text = DateTime.Now.ToString("ddd");
-            //label1.Text = DateTime.Now.ToString("d MMM yyy");
+            label14.Text = DateTime.Now.ToString("HH:mm");
+            //label4.Text = DateTime.Now.ToString("ddd");
+            //label.Text = DateTime.Now.ToString("d MMM yyy");
             timer1.Start();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //label2.Text= DateTime.Now.ToString("HH:mm");
+            
             
             var culture = CultureInfo.GetCultureInfo("cs-CZ");
             var dateTimeInfo = DateTimeFormatInfo.GetInstance(culture);
@@ -122,7 +123,8 @@ namespace Window
 
             int weekNumber = culture.Calendar.GetWeekOfYear(dateTime, dateTimeInfo.CalendarWeekRule, dateTimeInfo.FirstDayOfWeek);
             label3.Text = ""+weekNumber;
-            label4.Text= DateTime.Now.ToString("ddd");
+            label14.Text = DateTime.Now.ToString("HH:mm");
+            //label4.Text= DateTime.Now.ToString("ddd");
             //label1.Text = DateTime.Now.ToString("d MMM yyy");
         }
 
@@ -154,6 +156,52 @@ namespace Window
         private void label5_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+            label5.Text = "France : la mère d'un jihadiste condamnée à deux ans de prison pour financement du terrorisme";
+            label16.ForeColor = System.Drawing.Color.White;
+            label15.ForeColor = System.Drawing.Color.Gray;
+            label13.ForeColor = System.Drawing.Color.Gray;
+            panel3.BackgroundImage = Image.FromFile
+   (System.Environment.GetFolderPath
+   (System.Environment.SpecialFolder.Personal)
+   + @"\Resources\fr.jpg");
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+            label5.Text = "France : un budget pour motiver les riches";
+            label16.ForeColor = System.Drawing.Color.Gray;
+            label15.ForeColor = System.Drawing.Color.Gray;
+            label13.ForeColor = System.Drawing.Color.White;
+            panel3.BackgroundImage = Image.FromFile
+   (System.Environment.GetFolderPath
+   (System.Environment.SpecialFolder.Personal)
+   + @"\Resources\new1.jpg");
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+            label5.Text = "Réforme de l’Union européenne : le plus dur commence pour Emmanuel Macron";
+            label16.ForeColor = System.Drawing.Color.Gray;
+            label15.ForeColor = System.Drawing.Color.White;
+            label13.ForeColor = System.Drawing.Color.Gray;
+            panel3.BackgroundImage = Image.FromFile
+   (System.Environment.GetFolderPath
+   (System.Environment.SpecialFolder.Personal)
+   + @"\Resources\new2.jpeg");
         }
     }
 }
