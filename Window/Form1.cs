@@ -97,7 +97,7 @@ namespace Window
 
         private void panel1_Paint_1(object sender, PaintEventArgs e)
         {
-            label2.Text = DateTime.Now.ToString("HH:mm");
+            //label2.Text = DateTime.Now.ToString("HH:mm");
 
             var culture = CultureInfo.GetCultureInfo("cs-CZ");
             var dateTimeInfo = DateTimeFormatInfo.GetInstance(culture);
@@ -107,13 +107,13 @@ namespace Window
             int weekNumber = culture.Calendar.GetWeekOfYear(dateTime, dateTimeInfo.CalendarWeekRule, dateTimeInfo.FirstDayOfWeek);
             label3.Text = "" + weekNumber;
             label4.Text = DateTime.Now.ToString("ddd");
-            label1.Text = DateTime.Now.ToString("d MMM yyy");
+            //label1.Text = DateTime.Now.ToString("d MMM yyy");
             timer1.Start();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            label2.Text= DateTime.Now.ToString("HH:mm");
+            //label2.Text= DateTime.Now.ToString("HH:mm");
             
             var culture = CultureInfo.GetCultureInfo("cs-CZ");
             var dateTimeInfo = DateTimeFormatInfo.GetInstance(culture);
@@ -123,7 +123,7 @@ namespace Window
             int weekNumber = culture.Calendar.GetWeekOfYear(dateTime, dateTimeInfo.CalendarWeekRule, dateTimeInfo.FirstDayOfWeek);
             label3.Text = ""+weekNumber;
             label4.Text= DateTime.Now.ToString("ddd");
-            label1.Text = DateTime.Now.ToString("d MMM yyy");
+            //label1.Text = DateTime.Now.ToString("d MMM yyy");
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -146,6 +146,14 @@ namespace Window
 
         }
 
-        
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label5_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
