@@ -18,3 +18,5 @@ C:\Users\ZERO\source\repos\fairytail\Window\obj\Debug\Window.csproj.GenerateReso
 C:\Users\ZERO\source\repos\fairytail\Window\obj\Debug\Window.csproj.CoreCompileInputs.cache
 C:\Users\ZERO\source\repos\fairytail\Window\obj\Debug\Window.exe
 C:\Users\ZERO\source\repos\fairytail\Window\obj\Debug\Window.pdb
+C:\Users\ZERO\source\repos\fairytail\Window\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ZERO\source\repos\fairytail\Window\bin\Debug\Newtonsoft.Json.xml

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Windows.Forms;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace Window
 {
@@ -109,6 +111,8 @@ namespace Window
             label14.Text = DateTime.Now.ToString("HH:mm");
             //label4.Text = DateTime.Now.ToString("ddd");
             //label.Text = DateTime.Now.ToString("d MMM yyy");
+            get_Weather("https://api.openweathermap.org/data/2.5/weather?q=Paris&units=metric&APPID=08adef4dd3f2ee28724273f0155944c0");
+
             timer1.Start();
         }
 
@@ -126,8 +130,31 @@ namespace Window
             label14.Text = DateTime.Now.ToString("HH:mm");
             //label4.Text= DateTime.Now.ToString("ddd");
             //label1.Text = DateTime.Now.ToString("d MMM yyy");
-        }
+            
+      
+            
+            
+             }
+        async void get_Weather(string uri)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                using (HttpResponseMessage content = await client.GetAsync(uri))
+                {
+                    using (HttpContent data = content.Content)
+                    {
+                        string dt = await data.ReadAsStringAsync();
+                        dynamic obj = JsonConvert.DeserializeObject(dt);
+                        //Console.WriteLine(obj.weather["main"]);
+                        label17.Text = obj.weather[0].main;
+                        label2.Text = obj.weather[0].description;
+                        label9.Text = obj.main.temp;
 
+                    }
+
+                }
+            }
+        }
         private void label7_Click(object sender, EventArgs e)
         {
 
@@ -202,6 +229,26 @@ namespace Window
    (System.Environment.GetFolderPath
    (System.Environment.SpecialFolder.Personal)
    + @"\Resources\new2.jpeg");
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
