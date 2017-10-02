@@ -112,7 +112,7 @@ namespace Window
             //label4.Text = DateTime.Now.ToString("ddd");
             //label.Text = DateTime.Now.ToString("d MMM yyy");
             get_Weather("https://api.openweathermap.org/data/2.5/weather?q=Paris&units=metric&APPID=08adef4dd3f2ee28724273f0155944c0");
-
+            get_forecast("https://api.openweathermap.org/data/2.5/forecast?q=Paris&units=metric&APPID=08adef4dd3f2ee28724273f0155944c0");
             timer1.Start();
         }
 
@@ -146,10 +146,66 @@ namespace Window
                         string dt = await data.ReadAsStringAsync();
                         dynamic obj = JsonConvert.DeserializeObject(dt);
                         //Console.WriteLine(obj.weather["main"]);
-                        label17.Text = obj.weather[0].main;
+                        //label17.Text = obj.weather[0].main;
                         label2.Text = obj.weather[0].description;
-                        label9.Text = obj.main.temp;
+                        string temp = obj.main.temp;
+                        label9.Text = temp.Substring(0, 2);
+                        string icon = @"\Resources\weather\" + obj.weather[0].icon + ".png";
+                        panel4.BackgroundImage = Image.FromFile(System.Environment.GetFolderPath
+                            (System.Environment.SpecialFolder.Personal)+icon);
 
+                    }
+
+                }
+            }
+        }
+        async void get_forecast(string uri)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                using (HttpResponseMessage content = await client.GetAsync(uri))
+                {
+                    using (HttpContent data = content.Content)
+                    {
+                        string dt = await data.ReadAsStringAsync();
+                        dynamic obj = JsonConvert.DeserializeObject(dt);
+                        //Console.WriteLine(obj.weather["main"]);
+                        //label17.Text = obj.weather[0].main;
+                        
+                            string icon = @"\Resources\weather\" + obj.list[0].weather[0].icon+".png";
+                        panel5.BackgroundImage = Image.FromFile(System.Environment.GetFolderPath
+                        (System.Environment.SpecialFolder.Personal) + icon);
+
+                        icon = @"\Resources\weather\" + obj.list[1].weather[0].icon + ".png";
+                        panel6.BackgroundImage = Image.FromFile(System.Environment.GetFolderPath
+                        (System.Environment.SpecialFolder.Personal) + icon);
+
+                        icon = @"\Resources\weather\" + obj.list[2].weather[0].icon + ".png";
+                        panel7.BackgroundImage = Image.FromFile(System.Environment.GetFolderPath
+                        (System.Environment.SpecialFolder.Personal) + icon);
+
+                        icon = @"\Resources\weather\" + obj.list[3].weather[0].icon + ".png";
+                        panel8.BackgroundImage = Image.FromFile(System.Environment.GetFolderPath
+                        (System.Environment.SpecialFolder.Personal) + icon);
+
+                        icon = @"\Resources\weather\" + obj.list[4].weather[0].icon + ".png";
+                        panel9.BackgroundImage = Image.FromFile(System.Environment.GetFolderPath
+                        (System.Environment.SpecialFolder.Personal) + icon);
+
+                        string temp = obj.list[0].main.temp;
+                        label6.Text = temp.Substring(0, 2);
+
+                        temp = obj.list[1].main.temp;
+                        label7.Text = temp.Substring(0, 2);
+
+                        temp = obj.list[2].main.temp;
+                        label8.Text = temp.Substring(0, 2);
+
+                        temp = obj.list[3].main.temp;
+                        label10.Text = temp.Substring(0, 2);
+
+                        temp = obj.list[4].main.temp;
+                        label11.Text = temp.Substring(0, 2);
                     }
 
                 }
@@ -217,7 +273,10 @@ namespace Window
    (System.Environment.GetFolderPath
    (System.Environment.SpecialFolder.Personal)
    + @"\Resources\new1.jpg");
+
+            
         }
+
 
         private void label15_Click(object sender, EventArgs e)
         {
@@ -247,6 +306,41 @@ namespace Window
         }
 
         private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel7_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel9_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel8_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel6_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
         {
 
         }
