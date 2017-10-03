@@ -107,13 +107,15 @@ namespace Window
             var dateTime = DateTime.Today;
 
             int weekNumber = culture.Calendar.GetWeekOfYear(dateTime, dateTimeInfo.CalendarWeekRule, dateTimeInfo.FirstDayOfWeek);
-            label3.Text = "" + weekNumber;
-            label14.Text = DateTime.Now.ToString("HH:mm");
+            label21.Text = "" + weekNumber;
+            //label14.Text = DateTime.Now.ToString("HH:mm");
             //label4.Text = DateTime.Now.ToString("ddd");
             //label.Text = DateTime.Now.ToString("d MMM yyy");
-            get_Weather("https://api.openweathermap.org/data/2.5/weather?q=Paris&units=metric&APPID=08adef4dd3f2ee28724273f0155944c0");
-            get_forecast("https://api.openweathermap.org/data/2.5/forecast?q=Paris&units=metric&APPID=08adef4dd3f2ee28724273f0155944c0");
-            timer1.Start();
+            get_news("https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=6782791a4f6a4774ba811636c8aacc2a");
+            get_Weather("https://api.openweathermap.org/data/2.5/weather?q=Paris&units=metric&APPID=0e839af4b2d3466fa03d6e5b2e36da60");
+            get_forecast("https://api.openweathermap.org/data/2.5/forecast?q=Paris&units=metric&APPID=0e839af4b2d3466fa03d6e5b2e36da60");
+            
+            //timer1.Start();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -126,8 +128,8 @@ namespace Window
             var dateTime = DateTime.Today;
 
             int weekNumber = culture.Calendar.GetWeekOfYear(dateTime, dateTimeInfo.CalendarWeekRule, dateTimeInfo.FirstDayOfWeek);
-            label3.Text = ""+weekNumber;
-            label14.Text = DateTime.Now.ToString("HH:mm");
+            label21.Text = ""+weekNumber;
+            //label14.Text = DateTime.Now.ToString("HH:mm");
             //label4.Text= DateTime.Now.ToString("ddd");
             //label1.Text = DateTime.Now.ToString("d MMM yyy");
             
@@ -147,12 +149,12 @@ namespace Window
                         dynamic obj = JsonConvert.DeserializeObject(dt);
                         //Console.WriteLine(obj.weather["main"]);
                         //label17.Text = obj.weather[0].main;
-                        label2.Text = obj.weather[0].description;
+                            label2.Text = obj.weather[0].main;
                         string temp = obj.main.temp;
                         label9.Text = temp.Substring(0, 2);
                         string icon = @"\Resources\weather\" + obj.weather[0].icon + ".png";
-                        panel4.BackgroundImage = Image.FromFile(System.Environment.GetFolderPath
-                            (System.Environment.SpecialFolder.Personal)+icon);
+                        //panel4.BackgroundImage = Image.FromFile(System.Environment.GetFolderPath
+                           // (System.Environment.SpecialFolder.Personal)+icon);
 
                     }
 
@@ -193,19 +195,58 @@ namespace Window
                         (System.Environment.SpecialFolder.Personal) + icon);
 
                         string temp = obj.list[0].main.temp;
-                        label6.Text = temp.Substring(0, 2);
+                        label6.Text = obj.list[0].main.temp;
 
                         temp = obj.list[1].main.temp;
-                        label7.Text = temp.Substring(0, 2);
+                        label7.Text = obj.list[1].main.temp;
 
                         temp = obj.list[2].main.temp;
-                        label8.Text = temp.Substring(0, 2);
+                        label8.Text = obj.list[2].main.temp;
 
                         temp = obj.list[3].main.temp;
-                        label10.Text = temp.Substring(0, 2);
+                        label10.Text = obj.list[3].main.temp;
 
                         temp = obj.list[4].main.temp;
-                        label11.Text = temp.Substring(0, 2);
+                        label11.Text = obj.list[4].main.temp;
+
+                        var culture = CultureInfo.GetCultureInfo("cs-CZ");
+                        var dateTimeInfo = DateTimeFormatInfo.GetInstance(culture);
+
+                        var today = DateTime.Today;
+
+                        label15.Text = today.AddDays(1).ToString("dddd");
+                        label16.Text = today.AddDays(2).ToString("dddd");
+                        label17.Text = today.AddDays(3).ToString("dddd");
+                        label18.Text = today.AddDays(4).ToString("dddd");
+                        label19.Text = today.AddDays(5).ToString("dddd");
+
+                    }
+
+                }
+            }
+        }
+        async void get_news(string uri)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                using (HttpResponseMessage content = await client.GetAsync(uri))
+                {
+                    using (HttpContent data = content.Content)
+                    {
+                        string dt = await data.ReadAsStringAsync();
+                        dynamic obj = JsonConvert.DeserializeObject(dt);
+                        //Console.WriteLine(obj.weather["main"]);
+                        //label17.Text = obj.weather[0].main;
+                        int i = 0;
+                        while (i!=1) {
+                            for(int j = 0; j < 10; j++)
+                            {
+                                await Task.Delay(5000);
+                                label20.Text = obj.articles[0].title;
+                            }
+                                
+                        }
+                        
                     }
 
                 }
@@ -248,14 +289,14 @@ namespace Window
 
         private void label16_Click(object sender, EventArgs e)
         {
-            label5.Text = "France : la mère d'un jihadiste condamnée à deux ans de prison pour financement du terrorisme";
-            label16.ForeColor = System.Drawing.Color.White;
-            label15.ForeColor = System.Drawing.Color.Gray;
-            label13.ForeColor = System.Drawing.Color.Gray;
-            panel3.BackgroundImage = Image.FromFile
-   (System.Environment.GetFolderPath
-   (System.Environment.SpecialFolder.Personal)
-   + @"\Resources\fr.jpg");
+          //  label5.Text = "France : la mère d'un jihadiste condamnée à deux ans de prison pour financement du terrorisme";
+           // label16.ForeColor = System.Drawing.Color.White;
+           // label15.ForeColor = System.Drawing.Color.Gray;
+            //label13.ForeColor = System.Drawing.Color.Gray;
+            //panel3.BackgroundImage = Image.FromFile
+  // (System.Environment.GetFolderPath
+   //(System.Environment.SpecialFolder.Personal)
+   //+ @"\Resources\fr.jpg");
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
@@ -265,14 +306,14 @@ namespace Window
 
         private void label13_Click(object sender, EventArgs e)
         {
-            label5.Text = "France : un budget pour motiver les riches";
-            label16.ForeColor = System.Drawing.Color.Gray;
-            label15.ForeColor = System.Drawing.Color.Gray;
-            label13.ForeColor = System.Drawing.Color.White;
-            panel3.BackgroundImage = Image.FromFile
-   (System.Environment.GetFolderPath
-   (System.Environment.SpecialFolder.Personal)
-   + @"\Resources\new1.jpg");
+            //label5.Text = "France : un budget pour motiver les riches";
+            //label16.ForeColor = System.Drawing.Color.Gray;
+            //label15.ForeColor = System.Drawing.Color.Gray;
+           // label13.ForeColor = System.Drawing.Color.White;
+            //panel3.BackgroundImage = Image.FromFile
+   //(System.Environment.GetFolderPath
+   //(System.Environment.SpecialFolder.Personal)
+   //+ @"\Resources\new1.jpg");
 
             
         }
@@ -280,14 +321,14 @@ namespace Window
 
         private void label15_Click(object sender, EventArgs e)
         {
-            label5.Text = "Réforme de l’Union européenne : le plus dur commence pour Emmanuel Macron";
-            label16.ForeColor = System.Drawing.Color.Gray;
-            label15.ForeColor = System.Drawing.Color.White;
-            label13.ForeColor = System.Drawing.Color.Gray;
-            panel3.BackgroundImage = Image.FromFile
-   (System.Environment.GetFolderPath
-   (System.Environment.SpecialFolder.Personal)
-   + @"\Resources\new2.jpeg");
+           // label5.Text = "Réforme de l’Union européenne : le plus dur commence pour Emmanuel Macron";
+            //label16.ForeColor = System.Drawing.Color.Gray;
+            //label15.ForeColor = System.Drawing.Color.White;
+           // label13.ForeColor = System.Drawing.Color.Gray;
+            //panel3.BackgroundImage = Image.FromFile
+   //(System.Environment.GetFolderPath
+   //(System.Environment.SpecialFolder.Personal)
+   //+ @"\Resources\new2.jpeg");
         }
 
         private void label17_Click(object sender, EventArgs e)
@@ -341,6 +382,37 @@ namespace Window
         }
 
         private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_3(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint_1(object sender, PaintEventArgs e)
+        {
+            
+
+        }
+
+        private void panel10_Paint(object sender, PaintEventArgs e)
         {
 
         }
